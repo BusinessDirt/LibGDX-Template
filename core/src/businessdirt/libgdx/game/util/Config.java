@@ -17,6 +17,7 @@ public class Config extends ConfigHandler {
             type = PropertyType.SWITCH,
             name = "Switch Example",
             category = "Example Category",
+            subcategory = "Example Subcategory",
             description = "A Switch has two state on and off."
     )
     public static boolean switchExample = false;
@@ -25,6 +26,7 @@ public class Config extends ConfigHandler {
             type = PropertyType.TEXT,
             name = "Text Example",
             category = "Example Category",
+            subcategory = "Example Subcategory",
             description = "A Text can receive input as any character."
     )
     public static String textExample = "";
@@ -33,6 +35,7 @@ public class Config extends ConfigHandler {
             type = PropertyType.PARAGRAPH,
             name = "Paragraph Example",
             category = "Example Category",
+            subcategory = "Example Subcategory",
             description = "A Paragraph can only receive characters from a-z as input."
     )
     public static String paragraphExample = "";
@@ -41,6 +44,7 @@ public class Config extends ConfigHandler {
             type = PropertyType.NUMBER,
             name = "Number Example",
             category = "Example Category",
+            subcategory = "Example Subcategory 2",
             description = "A Number can only receive numbers as input."
     )
     public static double numberExample = 0D;
@@ -48,7 +52,7 @@ public class Config extends ConfigHandler {
     @Property(
             type = PropertyType.SLIDER,
             name = "Slider Example",
-            category = "Example Category",
+            category = "Example Category 2",
             description = "A Slider ranges from the specified min() value to the specified max() value.",
             max = 100
     )
@@ -58,6 +62,7 @@ public class Config extends ConfigHandler {
             type = PropertyType.COLOR,
             name = "Color Example",
             category = "Example Category",
+            subcategory = "Example Subcategory 2",
             description = "A Color is just a color picker."
     )
     public static List<Float> colorExample = Arrays.asList(1f, 1f, 1f, 1f);
@@ -65,7 +70,7 @@ public class Config extends ConfigHandler {
     @Property(
             type = PropertyType.SELECTOR,
             name = "Selector Example",
-            category = "Example Category",
+            category = "Example Category 2",
             description = "Example Description",
             options = {"lmao", "rofl", "haha", "69", "420"}
     )
