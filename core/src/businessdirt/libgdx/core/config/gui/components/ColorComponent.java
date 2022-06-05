@@ -119,6 +119,8 @@ public class ColorComponent extends GuiComponent {
                         property.setValue(color);
                         colorComponent.setColor(color);
                         Config.getConfig().writeData();
+
+                        ColorPicker.get().movePicker(color);
                     }
 
                     // remove any overflow chars
@@ -179,13 +181,17 @@ public class ColorComponent extends GuiComponent {
             ColorPicker.get().hexCode.setText("#" + hex);
 
             // find the position of the color on the color wheel
+            ColorPicker.get().movePicker(color);
+        }
+
+        private void movePicker(Color color) {
             Pixmap pixmap = new Pixmap(Gdx.files.internal("textures/gui/settings/colorwheel.png"));
-            float scale = ColorPicker.get().colorWheel.getWidth() / pixmap.getWidth();
+            float scale = colorWheel.getWidth() / pixmap.getWidth();
             for (int x = 0; x < pixmap.getWidth(); x++) {
                 for (int y = 0; y < pixmap.getHeight(); y++) {
                     Color pixelColor = new Color(pixmap.getPixel(x, y));
                     if (pixelColor.r == color.r && pixelColor.g == color.g && pixelColor.b == color.b) {
-                        ColorPicker.get().colorWheelPicker.setPosition(735f + x * scale - 8, 390f + (ColorPicker.get().colorWheel.getHeight() - y * scale) - 8);
+                        colorWheelPicker.setPosition(735f + x * scale - 8, 390f + (colorWheel.getHeight() - y * scale) - 8);
                     }
                 }
             }
