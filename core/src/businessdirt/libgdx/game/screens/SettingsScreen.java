@@ -2,6 +2,7 @@ package businessdirt.libgdx.game.screens;
 
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.gui.SettingsGui;
+import businessdirt.libgdx.core.config.gui.components.ColorComponent;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -86,6 +87,8 @@ public class SettingsScreen extends AbstractScreen {
             }
         });
         this.stage.addActor(backButton);
+
+        this.stage.addActor(ColorComponent.ColorPicker.newInstance(skin).getActor());
     }
 
     @Override

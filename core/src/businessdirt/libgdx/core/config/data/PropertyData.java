@@ -1,6 +1,7 @@
 package businessdirt.libgdx.core.config.data;
 
 import businessdirt.libgdx.core.config.ConfigHandler;
+import com.badlogic.gdx.graphics.Color;
 
 import java.lang.reflect.Field;
 import java.util.Objects;
@@ -37,8 +38,12 @@ public class PropertyData {
         return (Double) this.getValue().getValue(this.getInstance());
     }
 
-    public double getAsInt() {
+    public int getAsInt() {
         return (Integer) this.getValue().getValue(this.getInstance());
+    }
+
+    public Color getAsColor() {
+        return (Color) this.getValue().getValue(this.getInstance());
     }
 
     public Object getAs(Class<?> c) {

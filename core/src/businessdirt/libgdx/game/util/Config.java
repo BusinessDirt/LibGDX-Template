@@ -65,7 +65,7 @@ public class Config extends ConfigHandler {
             subcategory = "Example Subcategory 2",
             description = "A Color is just a color picker."
     )
-    public static List<Float> colorExample = Arrays.asList(1f, 1f, 1f, 1f);
+    public static Color colorExample = new Color(1f, 1f, 1f, 1f);
 
     @Property(
             type = PropertyType.SELECTOR,

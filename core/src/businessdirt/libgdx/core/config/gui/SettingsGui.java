@@ -147,7 +147,7 @@ public class SettingsGui {
                         group.addActor(new ParagraphComponent(property, skin, propertyWidth - 30f, h).getActor());
                         break;
                     case COLOR:
-                        //group.addActor(new ColorComponent(property, skin, width - 30f, h).getActor());
+                        group.addActor(new ColorComponent(property, skin, propertyWidth - 30f, h).getActor());
                         break;
                 }
 
