@@ -17,14 +17,14 @@
     selection: { r: 0, g: 0.3, b: 0.5, a: 1 },
     semiTransparent: { r: 0, g: 0, b: 0, a: 0.6 },
     transparent: { r: 0, g: 0, b: 0, a: 0 },
-    fontColor: {r: 1, g: 1, b: 1, a: 0.9}
-    darkFontColor: { a: 1.0, b: 0.35686275, g: 0.35686275, r: 0.35686275 }
+    fontColor: {r: 1, g: 1, b: 1, a: 0.9},
+    darkFontColor: { a: 1.0, b: 0.35686275, g: 0.35686275, r: 0.35686275 },
 
-    font: fontColor
-    fontOver: down
-    fontDown: gray
-    fontChecked: checked
-    fontCheckedOver: checkedOver
+    font: fontColor,
+    fontOver: down,
+    fontDown: gray,
+    fontChecked: checked,
+    fontCheckedOver: checkedOver,
     fontDisabled: gray
   },
   TintedDrawable: {
@@ -132,6 +132,10 @@
     default: { up: buttonUp, over: buttonOver, down: buttonDown, disabled: buttonDisabled, font: default, fontColor: font,
       overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
     backButton: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, font: default, fontColor: font,
+      overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
+    settingsButton: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, font: default, fontColor: font,
+      overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
+    playButton: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, font: default, fontColor: font,
       overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 }
   },
   TextFieldStyle: {

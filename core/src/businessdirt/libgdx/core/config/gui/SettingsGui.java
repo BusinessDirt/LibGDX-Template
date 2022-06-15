@@ -4,8 +4,7 @@ import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.data.Category;
 import businessdirt.libgdx.core.config.data.PropertyData;
 import businessdirt.libgdx.core.config.gui.components.*;
-import businessdirt.libgdx.game.util.Config;
-import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import businessdirt.libgdx.core.util.Config;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
@@ -27,7 +26,7 @@ public class SettingsGui {
 
     private SettingsGui(Table categoryTable, Table propertyTable, float categoryWidth, float propertyWidth) {
         this.searchQuery = "";
-        this.skin = Template.assets.getSkin("skins/settings/skin.json");
+        this.skin = Template.assets.getSkin("skins/ui/skin.json");
 
         List<Category> categories = Config.getConfig().getCategories();
         this.currentCategory = 0;

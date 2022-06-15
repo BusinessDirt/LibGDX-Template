@@ -1,4 +1,4 @@
-package businessdirt.libgdx.game.util;
+package businessdirt.libgdx.core.util;
 
 import java.io.File;
 import java.text.SimpleDateFormat;

@@ -1,4 +1,4 @@
-package businessdirt.libgdx.game.screens;
+package businessdirt.libgdx.ui.screens;
 
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.gui.SettingsGui;
@@ -14,7 +14,7 @@ public class SettingsScreen extends AbstractScreen {
     private ScrollPane valuesPane, categoriesPane;
 
     public SettingsScreen() {
-        super(Template.assets.getSkin("skins/settings/skin.json"), Color.TEAL);
+        super(Template.assets.getSkin("skins/ui/skin.json"), Color.TEAL);
     }
 
     @Override

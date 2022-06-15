@@ -1,8 +1,8 @@
-package businessdirt.libgdx.game.screens;
+package businessdirt.libgdx.ui.screens;
 
 import businessdirt.libgdx.Template;
-import businessdirt.libgdx.game.util.AssetLoader;
-import businessdirt.libgdx.game.util.Config;
+import businessdirt.libgdx.core.util.AssetLoader;
+import businessdirt.libgdx.core.util.Config;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;

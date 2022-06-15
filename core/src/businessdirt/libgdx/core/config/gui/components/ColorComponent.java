@@ -3,7 +3,8 @@ package businessdirt.libgdx.core.config.gui.components;
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.data.PropertyData;
 import businessdirt.libgdx.core.config.gui.SettingsGui;
-import businessdirt.libgdx.game.util.Config;
+import businessdirt.libgdx.core.util.Config;
+import businessdirt.libgdx.ui.actors.FloatingMenu;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -55,35 +56,19 @@ public class ColorComponent extends GuiComponent {
         this.color.setDrawable(new TextureRegionDrawable(new Texture(pixmap)));
     }
 
-    public static class ColorPicker extends GuiComponent {
+    public static class ColorPicker {
+
+        private final FloatingMenu picker;
 
         private static ColorPicker instance;
         private PropertyData property;
         private final TextField hexCode;
         private ColorComponent colorComponent;
         private final Slider alpha;
-        private final Image colorWheel;
-        private final Image colorWheelPicker;
+        private final Image colorWheel, colorWheelPicker;
 
         private ColorPicker(Skin skin) {
-            this.actor = new Group();
-            this.actor.setSize(1920f, 1080);
-            this.actor.setVisible(false);
-
-            Group group = (Group) this.actor;
-            group.setPosition(0, 0);
-
-            Pixmap pixmap = new Pixmap(1920, 1080, Pixmap.Format.RGBA8888);
-            pixmap.setColor(new Color(0f, 0f, 0f, 0.2f));
-            pixmap.fill();
-
-            Drawable drawable = new TextureRegionDrawable(new Texture(pixmap));
-            Image drawableImage = new Image(drawable);
-            drawableImage.addListener(new BackgroundClickListener());
-            group.addActor(drawableImage);
-
-            Button button = new Button(skin.get("blank", Button.ButtonStyle.class));
-            button.setBounds(710f, 290f, 500f, 500f);
+            this.picker = new FloatingMenu(skin, 500f, 500f);
 
             // color code in hex
             this.hexCode = new TextField("", skin);
@@ -156,20 +141,15 @@ public class ColorComponent extends GuiComponent {
             this.colorWheelPicker = new Image(skin, "pickerBlack");
             this.colorWheelPicker.setBounds(800f, 500f, 16f, 16f);
 
-            group.addActor(button);
-            group.addActor(this.hexCode);
-            group.addActor(this.alpha);
-            group.addActor(this.colorWheel);
-            group.addActor(this.colorWheelPicker);
-        }
-
-        public void setVisible(boolean visible) {
-            this.actor.setVisible(visible);
+            this.picker.addActor(this.hexCode);
+            this.picker.addActor(this.alpha);
+            this.picker.addActor(this.colorWheel);
+            this.picker.addActor(this.colorWheelPicker);
         }
 
         public static void activate(ColorComponent colorComponent, PropertyData property) {
             SettingsGui.get().getScrollPane().getStage().setScrollFocus(null);
-            ColorPicker.get().setVisible(true);
+            ColorPicker.get().picker.activate();
 
             ColorPicker.get().property = property;
             ColorPicker.get().colorComponent = colorComponent;
@@ -205,7 +185,7 @@ public class ColorComponent extends GuiComponent {
 
         public static void deactivate() {
             SettingsGui.get().getScrollPane().getStage().setScrollFocus(SettingsGui.get().getScrollPane());
-            ColorPicker.get().setVisible(false);
+            ColorPicker.get().picker.deactivate();
         }
 
         public void setColor(float x, float y) {
@@ -229,6 +209,10 @@ public class ColorComponent extends GuiComponent {
         public static ColorPicker newInstance(Skin skin) {
             ColorPicker.instance = new ColorPicker(skin);
             return ColorPicker.instance;
+        }
+
+        public Group getActor() {
+            return this.picker.getActor();
         }
     }
 

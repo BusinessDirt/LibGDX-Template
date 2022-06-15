@@ -1,17 +1,10 @@
 package businessdirt.libgdx;
 
-import businessdirt.libgdx.game.screens.LoadingScreen;
-import businessdirt.libgdx.game.screens.MenuScreen;
-import businessdirt.libgdx.game.screens.SettingsScreen;
-import businessdirt.libgdx.game.util.AssetLoader;
-import businessdirt.libgdx.game.util.Config;
-import com.badlogic.gdx.ApplicationAdapter;
+import businessdirt.libgdx.ui.screens.LoadingScreen;
+import businessdirt.libgdx.core.util.AssetLoader;
+import businessdirt.libgdx.core.util.Config;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Graphics;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 import java.awt.*;
 
@@ -35,6 +28,7 @@ public class Template extends Game {
 	}
 
 	public static Template init(Graphics.DisplayMode fullscreen, Dimension windowed) {
+		// set the fullscreen and windowed dimensions for later use
 		Template.fullscreen = fullscreen;
 		Template.windowed = windowed;
 		return Template.get();

@@ -1,6 +1,6 @@
-package businessdirt.libgdx.game.screens;
+package businessdirt.libgdx.ui.screens;
 
-import businessdirt.libgdx.game.util.Input;
+import businessdirt.libgdx.core.util.Input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -10,7 +10,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.ScalingViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public abstract class AbstractScreen implements Screen {
 

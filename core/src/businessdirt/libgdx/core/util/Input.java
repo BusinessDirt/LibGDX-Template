@@ -1,4 +1,4 @@
-package businessdirt.libgdx.game.util;
+package businessdirt.libgdx.core.util;
 
 import businessdirt.libgdx.Template;
 import com.badlogic.gdx.Gdx;

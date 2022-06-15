@@ -1,4 +1,4 @@
-package businessdirt.libgdx.game.util;
+package businessdirt.libgdx.core.util;
 
 import businessdirt.libgdx.core.config.ConfigHandler;
 import businessdirt.libgdx.core.config.data.Property;
@@ -6,8 +6,6 @@ import businessdirt.libgdx.core.config.data.PropertyType;
 import com.badlogic.gdx.graphics.Color;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
 
 public class Config extends ConfigHandler {
 
