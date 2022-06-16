@@ -74,6 +74,14 @@ public class Config extends ConfigHandler {
     )
     public static String selectorExample = "";
 
+    @Property(
+            type = PropertyType.KEY,
+            name = "Key Example",
+            description = "Example Destription",
+            category = "Example Category 2"
+    )
+    public static Integer keyExample = 0;
+
     public Config() {
         super(new File(Util.getConfigFolder(), "\\config.toml"));
         this.initialize();

@@ -10,7 +10,8 @@ package businessdirt.libgdx.core.config.data;
  *      {@code SLIDER} -> {@link Integer} <br>
  *      {@code SELECTOR} -> {@link String} <br>
  *      {@code COLOR} -> {@link com.badlogic.gdx.graphics.Color} <br>
+ *      {@code KEY} -> {@link Integer} <br>
  */
 public enum PropertyType {
-    SWITCH, TEXT, PARAGRAPH, SLIDER, NUMBER, COLOR, SELECTOR;
+    SWITCH, TEXT, PARAGRAPH, SLIDER, NUMBER, COLOR, SELECTOR, KEY;
 }

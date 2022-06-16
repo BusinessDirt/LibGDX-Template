@@ -72,7 +72,7 @@ public class ColorComponent extends GuiComponent {
 
             // color code in hex
             this.hexCode = new TextField("", skin);
-            this.hexCode.setBounds(735f, 315f, 450f, 50f);
+            this.hexCode.setBounds(25f, 25f, 450f, 50f);
             this.hexCode.setAlignment(Align.center);
             this.hexCode.addListener(new ChangeListener() {
                 @Override
@@ -119,7 +119,7 @@ public class ColorComponent extends GuiComponent {
 
             // Slider for Transparency
             this.alpha = new Slider(0, 255, 1, true, skin);
-            this.alpha.setBounds(1135f, 390f, 50f, 375f);
+            this.alpha.setBounds(425f, 100f, 50f, 375f);
             this.alpha.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
@@ -134,12 +134,12 @@ public class ColorComponent extends GuiComponent {
 
             // Image for color picking
             this.colorWheel = new Image(Template.assets.getTexture("textures/gui/settings/colorwheel.png"));
-            this.colorWheel.setBounds(735f, 390f, 375f, 375f);
+            this.colorWheel.setBounds(25, 100f, 375f, 375f);
             this.colorWheel.addListener(new ColorWheelClickListener());
 
             // Picker
             this.colorWheelPicker = new Image(skin, "pickerBlack");
-            this.colorWheelPicker.setBounds(800f, 500f, 16f, 16f);
+            this.colorWheelPicker.setBounds(0f, 0f, 16f, 16f);
 
             this.picker.addActor(this.hexCode);
             this.picker.addActor(this.alpha);
@@ -213,15 +213,6 @@ public class ColorComponent extends GuiComponent {
 
         public Group getActor() {
             return this.picker.getActor();
-        }
-    }
-
-    private static class BackgroundClickListener extends ClickListener {
-
-        @Override
-        public void clicked(InputEvent event, float x, float y) {
-            super.clicked(event, x, y);
-            ColorPicker.deactivate();
         }
     }
 

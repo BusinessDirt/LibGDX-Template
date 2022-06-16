@@ -46,6 +46,8 @@ public class FloatingMenu {
         button.setPosition(x, y);
         button.setSize(width, height);
         menu.addActor(button);
+
+        this.deactivate();
     }
 
     public FloatingMenu(Skin skin, float width, float height) {
@@ -75,6 +77,7 @@ public class FloatingMenu {
 
     public void addActor(Actor actor) {
         actor.setZIndex(2 + actors.size());
+        actor.setPosition(this.x + actor.getX(), this.y + actor.getY());
         if (actor.getName() == null || actor.getName().equals("")) actor.setName("actor" + actors.size());
         this.menu.addActor(actor);
     }

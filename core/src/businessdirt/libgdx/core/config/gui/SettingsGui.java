@@ -148,6 +148,9 @@ public class SettingsGui {
                     case COLOR:
                         group.addActor(new ColorComponent(property, skin, propertyWidth - 30f, h).getActor());
                         break;
+                    case KEY:
+                        group.addActor(new KeyComponent(property, skin, propertyWidth - 30f, h).getActor());
+                        break;
                 }
 
                 float padTop = first ? 5f : 0f;
