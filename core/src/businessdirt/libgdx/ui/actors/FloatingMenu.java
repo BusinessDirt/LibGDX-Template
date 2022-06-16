@@ -1,6 +1,7 @@
 package businessdirt.libgdx.ui.actors;
 
 import businessdirt.libgdx.Template;
+import businessdirt.libgdx.core.config.gui.SettingsGui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -92,10 +93,12 @@ public class FloatingMenu {
     }
 
     public void activate() {
+        SettingsGui.get().getScrollPane().getStage().setScrollFocus(null);
         this.menu.setVisible(true);
     }
 
     public void deactivate() {
+        SettingsGui.get().getScrollPane().getStage().setScrollFocus(SettingsGui.get().getScrollPane());
         this.menu.setVisible(false);
     }
 

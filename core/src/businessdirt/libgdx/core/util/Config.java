@@ -3,6 +3,7 @@ package businessdirt.libgdx.core.util;
 import businessdirt.libgdx.core.config.ConfigHandler;
 import businessdirt.libgdx.core.config.data.Property;
 import businessdirt.libgdx.core.config.data.PropertyType;
+import businessdirt.libgdx.core.config.data.types.Key;
 import com.badlogic.gdx.graphics.Color;
 
 import java.io.File;
@@ -77,10 +78,10 @@ public class Config extends ConfigHandler {
     @Property(
             type = PropertyType.KEY,
             name = "Key Example",
-            description = "Example Destription",
+            description = "A Key has a primary and a secondary Key that can be used for user input etc.",
             category = "Example Category 2"
     )
-    public static Integer keyExample = 0;
+    public static Key keyExample = new Key();
 
     public Config() {
         super(new File(Util.getConfigFolder(), "\\config.toml"));

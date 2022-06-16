@@ -100,7 +100,7 @@
     blank: { up: buttonChecked, over: buttonChecked, down: buttonChecked, disabled: buttonChecked },
     divider: { up: buttonDisabled, over: buttonDisabled, down: buttonDisabled, disabled: buttonDisabled },
     category: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
-    color: {up: buttonUp, over: buttonOver, down: buttonOver, disabled: buttonDisabled}
+    settingsUI: {up: buttonUp, over: buttonOver, down: buttonOver, disabled: buttonDisabled}
   },
   CheckBoxStyle: {
     square: { checkboxOn: checkBoxSquare, checkboxOff: checkBoxOff, checkboxOver: checkBoxOver, checkboxOnOver: checkBoxSquareOver, checkboxOnDisabled: checkBoxSquareDisabled,
@@ -136,7 +136,9 @@
     settingsButton: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, font: default, fontColor: font,
       overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
     playButton: { up: buttonChecked, over: buttonCheckedOver, down: buttonChecked, disabled: buttonDisabled, font: default, fontColor: font,
-      overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 }
+      overFontColor: fontOver, downFontColor: fontDown, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1 },
+    settingsUI: { up: buttonUp, over: buttonOver, down: buttonOver, disabled: buttonDisabled, font: default, fontColor: font,
+      overFontColor: fontOver, downFontColor: fontOver, disabledFontColor: fontDisabled, pressedOffsetY: -1, pressedOffsetX: 1}
   },
   TextFieldStyle: {
     default: {

@@ -1,5 +1,7 @@
 package businessdirt.libgdx.core.util;
 
+import com.badlogic.gdx.Input;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,5 +31,9 @@ public class Util {
             }
         }
         return configFolder;
+    }
+
+    public static String getKeyCharFromCode(int code) {
+        return Input.Keys.toString(code);
     }
 }

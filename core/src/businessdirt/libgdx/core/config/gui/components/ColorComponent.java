@@ -26,7 +26,7 @@ public class ColorComponent extends GuiComponent {
     public ColorComponent(PropertyData property, Skin skin, float width, float height) {
         ColorComponent instance = this;
 
-        this.actor = new Button(skin.get("color", Button.ButtonStyle.class));
+        this.actor = new Button(skin.get("settingsUI", Button.ButtonStyle.class));
         Button button = (Button) this.actor;
         button.setTransform(true);
         button.setSize(76f, 76f);
@@ -148,7 +148,6 @@ public class ColorComponent extends GuiComponent {
         }
 
         public static void activate(ColorComponent colorComponent, PropertyData property) {
-            SettingsGui.get().getScrollPane().getStage().setScrollFocus(null);
             ColorPicker.get().picker.activate();
 
             ColorPicker.get().property = property;
@@ -181,11 +180,6 @@ public class ColorComponent extends GuiComponent {
             String hex = Integer.toHexString((int) (v));
             if (hex.length() == 1) hex = "0" + hex;
             return hex;
-        }
-
-        public static void deactivate() {
-            SettingsGui.get().getScrollPane().getStage().setScrollFocus(SettingsGui.get().getScrollPane());
-            ColorPicker.get().picker.deactivate();
         }
 
         public void setColor(float x, float y) {

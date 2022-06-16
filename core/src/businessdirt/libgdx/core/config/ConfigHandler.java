@@ -4,6 +4,7 @@ import businessdirt.libgdx.core.config.data.Category;
 import businessdirt.libgdx.core.config.data.Property;
 import businessdirt.libgdx.core.config.data.PropertyData;
 import businessdirt.libgdx.core.config.data.PropertyType;
+import businessdirt.libgdx.core.config.data.types.Key;
 import com.badlogic.gdx.graphics.Color;
 import com.electronwill.nightconfig.core.file.FileConfig;
 import com.google.common.primitives.Floats;
@@ -66,9 +67,11 @@ public class ConfigHandler {
             String fullPath = ConfigHandler.fullPropertyPath(property.getProperty());
             Object configObject = this.configFile.get(fullPath);
 
-            if (property.getProperty().type() == PropertyType.COLOR) {
+            if (property.getProperty().type() == PropertyType.KEY) {
+                Key.read(configObject, property);
+            } else if (property.getProperty().type() == PropertyType.COLOR) {
                 if (configObject == null) {
-                    configObject = property.getAsColor().toFloatBits();
+                    property.setValue(property.getAsColor());
                 } else {
                     float[] color = Floats.toArray((List<Double>) configObject) ;
                     property.setValue(new Color(color[0], color[1], color[2], color[3]));
@@ -87,8 +90,11 @@ public class ConfigHandler {
             String fullPath = ConfigHandler.fullPropertyPath(property.getProperty());
             Object propertyValue = property.getValue().getValue(property.getInstance());
 
-            if (property.getProperty().type() == PropertyType.COLOR)
+            if (property.getProperty().type() == PropertyType.KEY) {
+                propertyValue = Key.write(property);
+            } else if (property.getProperty().type() == PropertyType.COLOR) {
                 propertyValue = Arrays.asList(property.getAsColor().r, property.getAsColor().g, property.getAsColor().b, property.getAsColor().a);
+            }
 
             this.configFile.set(fullPath, propertyValue);
         }

@@ -25,7 +25,7 @@ public abstract class AbstractScreen implements Screen {
         this.skin = skin;
         this.backgroundColor = backgroundColor;
 
-        // Set the Input Processor to the stage for button click etc.
+        // Set the Input Processor to the stage for button clicks etc.
         Gdx.input.setInputProcessor(this.stage);
     }
 
