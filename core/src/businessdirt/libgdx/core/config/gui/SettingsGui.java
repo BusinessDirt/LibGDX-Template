@@ -77,13 +77,15 @@ public class SettingsGui {
         boolean first = true;
         String previousSubcategory = "";
 
-        List<PropertyData> filteredProperties = Config.getConfig().getCategories().get(this.currentCategory).getItems().stream().filter(data -> {
+        List<PropertyData> filteredProperties = Config.getConfig().getProperties().stream().filter(data -> {
             if (Objects.equals(this.searchQuery, "")) return true;
             return data.getProperty().name().contains(this.searchQuery) || data.getProperty().description().contains(this.searchQuery) ||
                     data.getProperty().category().contains(this.searchQuery) || data.getProperty().subcategory().contains(this.searchQuery);
         }).collect(Collectors.toList());
 
-        for (PropertyData property : filteredProperties) {
+        List<PropertyData> propertyDataList = searchQuery.equals("") ? Config.getConfig().getCategories().get(this.currentCategory).getItems() : filteredProperties;
+
+        for (PropertyData property : propertyDataList) {
             if (!property.getProperty().hidden()) {
 
                 if ((previousSubcategory.equals("") && !Objects.equals(property.getProperty().subcategory(), ""))
@@ -142,6 +144,7 @@ public class SettingsGui {
                         break;
                     case TEXT:
                         group.addActor(new TextComponent(property, skin, propertyWidth - 30f, h).getActor());
+                        break;
                     case PARAGRAPH:
                         group.addActor(new ParagraphComponent(property, skin, propertyWidth - 30f, h).getActor());
                         break;

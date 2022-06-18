@@ -20,7 +20,7 @@ public class PropertyData {
     }
 
     public Object getValue(Object object) {
-        return this.getValue().getValue(this.getInstance());
+        return this.getPropertyValue().getValue(this.getInstance());
     }
 
     public Object getAsAny() {
@@ -28,31 +28,27 @@ public class PropertyData {
     }
 
     public boolean getAsBoolean() {
-        return (Boolean) this.getValue().getValue(this.getInstance());
+        return (Boolean) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public String getAsString() {
-        return (String) this.getValue().getValue(this.getInstance());
+        return (String) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public double getAsDouble() {
-        return (Double) this.getValue().getValue(this.getInstance());
+        return (Double) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public int getAsInt() {
-        return (Integer) this.getValue().getValue(this.getInstance());
+        return (Integer) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public Color getAsColor() {
-        return (Color) this.getValue().getValue(this.getInstance());
+        return (Color) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public Key getAsKey() {
-        return (Key) this.getValue().getValue(this.getInstance());
-    }
-
-    public Object getAs(Class<?> c) {
-        return c.cast(this.getAsAny());
+        return (Key) this.getPropertyValue().getValue(this.getInstance());
     }
 
     public void setValue(Object value) {
@@ -64,7 +60,7 @@ public class PropertyData {
         return this.property;
     }
 
-    public PropertyValue getValue() {
+    public PropertyValue getPropertyValue() {
         return this.value;
     }
 

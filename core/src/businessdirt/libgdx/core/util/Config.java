@@ -83,7 +83,7 @@ public class Config extends ConfigHandler {
     )
     public static Key keyExample = new Key();
 
-    public Config() {
+    private Config() {
         super(new File(Util.getConfigFolder(), "\\config.toml"));
         this.initialize();
     }
