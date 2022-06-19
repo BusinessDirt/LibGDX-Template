@@ -20,12 +20,22 @@ public class SettingsScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        float containerOffset = 5f;
+        float scale = Template.fullscreen.height / 1080f;
+        float containerOffset = 5f * scale;
+
+        // dimensions for the whole gui
+        float width = 1520f * scale;
+        float height = 760f * scale;
+
+        // widths for categories and properties
+        float categoryWidth = 300f * scale;
+        float propertyWidth = 1220f * scale;
 
         // container for the scroll pane
         Table container = new Table(skin);
         container.setBackground("scrollPane");
-        container.setBounds(200f - containerOffset, 180f - containerOffset, 1520f + 2 * containerOffset, 760f + 2 * containerOffset);
+        container.setBounds((Template.fullscreen.width - width) / 2f - containerOffset, (Template.fullscreen.height - height) / 2f - containerOffset,
+                width + 2f * containerOffset, height + 2f * containerOffset);
 
         // table for all the config values
         Table propertyTable = new Table();
@@ -35,7 +45,7 @@ public class SettingsScreen extends AbstractScreen {
         Table categoryTable = new Table();
         categoryTable.align(Align.top);
 
-        SettingsGui.newInstance(categoryTable, propertyTable, 300f, 1220f);
+        SettingsGui.newInstance(categoryTable, propertyTable, categoryWidth , propertyWidth);
 
         // scroll pane for the config values
         this.valuesPane = new ScrollPane(propertyTable, skin.get("default", ScrollPane.ScrollPaneStyle.class));
@@ -53,8 +63,8 @@ public class SettingsScreen extends AbstractScreen {
         this.categoriesPane.layout();
 
         // add everything to the container
-        container.add(this.categoriesPane).width(300f).height(760f).pad(containerOffset, containerOffset, containerOffset, 0f);
-        container.add(this.valuesPane).width(1220f).height(760f).pad(containerOffset, 0f, containerOffset, containerOffset);
+        container.add(this.categoriesPane).width(categoryWidth).height(height).pad(containerOffset, containerOffset, containerOffset, 0f);
+        container.add(this.valuesPane).width(propertyWidth).height(height).pad(containerOffset, 0f, containerOffset, containerOffset);
         SettingsGui.get().setScrollPane(this.valuesPane);
         this.stage.addActor(container);
         this.stage.setScrollFocus(this.valuesPane);
@@ -62,25 +72,25 @@ public class SettingsScreen extends AbstractScreen {
         // Settings Label
         Label settingsLabel = new Label("Settings", skin);
         settingsLabel.setAlignment(Align.bottomLeft);
-        settingsLabel.setBounds(200f, 950f, 760f, 140f);
-        settingsLabel.setFontScale(2f);
+        settingsLabel.setBounds(200f * scale, 950f * scale, 760f * scale, 140f * scale);
+        settingsLabel.setFontScale(2f * scale);
         this.stage.addActor(settingsLabel);
 
         // Search Field
         TextField search = new TextField("", skin);
-        search.setBounds(1720f - 350f, 950f, 350f, 50f);
+        search.setBounds((1720f - 350f) * scale, 950f * scale, 350f * scale, 50f * scale);
         search.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                SettingsGui.get().setSearchQuery(propertyTable, 1220f, search.getText());
+                SettingsGui.get().setSearchQuery(propertyTable, propertyWidth, search.getText());
             }
         });
         this.stage.addActor(search);
 
         // Back Button
         TextButton backButton = new TextButton("Back", skin.get("backButton", TextButton.TextButtonStyle.class));
-        backButton.setBounds(960f - 175f, 40f, 350f, 100f);
-        backButton.getLabel().setFontScale(2f);
+        backButton.setBounds((960f - 175f) * scale, 40f * scale, 350f * scale, 100f * scale);
+        backButton.getLabel().setFontScale(2f * scale);
         backButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {

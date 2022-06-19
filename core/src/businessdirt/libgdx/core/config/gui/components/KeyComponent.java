@@ -3,17 +3,17 @@ package businessdirt.libgdx.core.config.gui.components;
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.data.PropertyData;
 import businessdirt.libgdx.core.config.data.types.Key;
-import businessdirt.libgdx.core.config.gui.SettingsGui;
 import businessdirt.libgdx.core.util.Util;
 import businessdirt.libgdx.ui.actors.FloatingMenu;
-import com.badlogic.gdx.scenes.scene2d.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
-
-import java.util.Locale;
 
 public class KeyComponent extends GuiComponent {
 
@@ -22,11 +22,11 @@ public class KeyComponent extends GuiComponent {
     public KeyComponent(PropertyData property, Skin skin, float width, float height) {
         KeyComponent instance = this;
         Key key = property.getAsKey();
-        float yOff = (height - 25f) / 2 - GuiComponent.height;
+        float yOff = (height - 25f * scale) / 2 - GuiComponent.height;
 
         this.actor = new Group();
         this.actor.setSize(GuiComponent.width, height);
-        this.actor.setPosition(width - 50f - GuiComponent.width, 0f);
+        this.actor.setPosition(width - 50f * scale - GuiComponent.width, 0f);
         Group group = (Group) this.actor;
 
         String primaryChar = Util.getKeyCharFromCode(key.getPrimary());
@@ -74,11 +74,11 @@ public class KeyComponent extends GuiComponent {
         private char type;
 
         public KeyInputHandler(Skin skin) {
-            this.menu = new FloatingMenu(skin, 500f, 500f);
+            this.menu = new FloatingMenu(skin, 500f * scale, 500f * scale);
 
             this.label = new Label("Press a key to bind it", skin);
-            this.label.setSize(500f, 500f);
-            this.label.setFontScale(2f);
+            this.label.setSize(500f * scale, 500f * scale);
+            this.label.setFontScale(2f * scale);
             this.label.setWrap(true);
             this.label.setAlignment(Align.center);
             this.label.addListener(new InputListener() {

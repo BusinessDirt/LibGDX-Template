@@ -1,10 +1,7 @@
 package businessdirt.libgdx.core.config.data.types;
 
 import businessdirt.libgdx.core.config.data.PropertyData;
-import businessdirt.libgdx.core.config.data.PropertyValue;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.google.common.primitives.Floats;
 import com.google.common.primitives.Ints;
 
 import java.util.Arrays;

@@ -20,7 +20,7 @@ public class SliderComponent extends GuiComponent {
         Slider slider = (Slider) this.actor;
 
         slider.setValue(property.getAsInt());
-        slider.setPosition(width - 50f - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f + 15f);
+        slider.setPosition(width - 50f * scale - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f + 15f * scale);
         slider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -38,7 +38,7 @@ public class SliderComponent extends GuiComponent {
         this.label = new Label(property.getPropertyValue().getValue(Config.getConfig()).toString(), skin);
         this.label.setAlignment(Align.center);
         this.label.setTouchable(Touchable.disabled);
-        this.label.setPosition(width - 50f - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f - 15f);
+        this.label.setPosition(width - 50f * scale - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f - 15f * scale);
         this.label.setWidth(this.actor.getWidth());
     }
 

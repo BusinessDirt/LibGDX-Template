@@ -1,8 +1,8 @@
 package businessdirt.libgdx;
 
-import businessdirt.libgdx.ui.screens.LoadingScreen;
 import businessdirt.libgdx.core.util.AssetLoader;
 import businessdirt.libgdx.core.util.Config;
+import businessdirt.libgdx.ui.screens.LoadingScreen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Graphics;
 

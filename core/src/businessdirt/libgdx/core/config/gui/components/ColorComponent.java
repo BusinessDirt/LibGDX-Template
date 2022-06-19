@@ -2,7 +2,6 @@ package businessdirt.libgdx.core.config.gui.components;
 
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.data.PropertyData;
-import businessdirt.libgdx.core.config.gui.SettingsGui;
 import businessdirt.libgdx.core.util.Config;
 import businessdirt.libgdx.ui.actors.FloatingMenu;
 import com.badlogic.gdx.Gdx;
@@ -29,8 +28,8 @@ public class ColorComponent extends GuiComponent {
         this.actor = new Button(skin.get("settingsUI", Button.ButtonStyle.class));
         Button button = (Button) this.actor;
         button.setTransform(true);
-        button.setSize(76f, 76f);
-        button.setPosition(width - 50f - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
+        button.setSize(76f * scale, 76f * scale);
+        button.setPosition(width - 50f * scale - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
         button.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -39,7 +38,7 @@ public class ColorComponent extends GuiComponent {
         });
 
         setColor(property.getAsColor());
-        button.add(this.color).width(56).height(56).pad(10f);
+        button.add(this.color).width(56f * scale).height(56f * scale).pad(10f * scale);
     }
 
     public void setColor(Color color) {
@@ -68,11 +67,11 @@ public class ColorComponent extends GuiComponent {
         private final Image colorWheel, colorWheelPicker;
 
         private ColorPicker(Skin skin) {
-            this.picker = new FloatingMenu(skin, 500f, 500f);
+            this.picker = new FloatingMenu(skin, 500f * scale, 500f * scale);
 
             // color code in hex
             this.hexCode = new TextField("", skin);
-            this.hexCode.setBounds(25f, 25f, 450f, 50f);
+            this.hexCode.setBounds(25f * scale, 25f * scale, 450f * scale, 50f * scale);
             this.hexCode.setAlignment(Align.center);
             this.hexCode.addListener(new ChangeListener() {
                 @Override
@@ -119,7 +118,7 @@ public class ColorComponent extends GuiComponent {
 
             // Slider for Transparency
             this.alpha = new Slider(0, 255, 1, true, skin);
-            this.alpha.setBounds(425f, 100f, 50f, 375f);
+            this.alpha.setBounds(425f * scale, 100f * scale, 50f * scale, 375f * scale);
             this.alpha.addListener(new ChangeListener() {
                 @Override
                 public void changed(ChangeEvent event, Actor actor) {
@@ -134,12 +133,12 @@ public class ColorComponent extends GuiComponent {
 
             // Image for color picking
             this.colorWheel = new Image(Template.assets.getTexture("textures/gui/settings/colorwheel.png"));
-            this.colorWheel.setBounds(25, 100f, 375f, 375f);
+            this.colorWheel.setBounds(25f * scale, 100f * scale, 375f * scale, 375f * scale);
             this.colorWheel.addListener(new ColorWheelClickListener());
 
             // Picker
             this.colorWheelPicker = new Image(skin, "pickerBlack");
-            this.colorWheelPicker.setBounds(0f, 0f, 16f, 16f);
+            this.colorWheelPicker.setBounds(0f, 0f, 16f * scale, 16f * scale);
 
             this.picker.addActor(this.hexCode);
             this.picker.addActor(this.alpha);
@@ -154,9 +153,9 @@ public class ColorComponent extends GuiComponent {
             ColorPicker.get().colorComponent = colorComponent;
 
             Color color = property.getAsColor();
-            ColorPicker.get().alpha.setValue(color.a * 255);
+            ColorPicker.get().alpha.setValue(color.a * 255f);
 
-            String hex = toHex(color.r * 255) + toHex(color.g * 255) + toHex(color.b * 255) + toHex(color.a * 255);
+            String hex = toHex(color.r * 255f) + toHex(color.g * 255f) + toHex(color.b * 255f) + toHex(color.a * 255f);
             ColorPicker.get().hexCode.setText("#" + hex);
 
             // find the position of the color on the color wheel
@@ -170,7 +169,7 @@ public class ColorComponent extends GuiComponent {
                 for (int y = 0; y < pixmap.getHeight(); y++) {
                     Color pixelColor = new Color(pixmap.getPixel(x, y));
                     if (pixelColor.r == color.r && pixelColor.g == color.g && pixelColor.b == color.b) {
-                        colorWheelPicker.setPosition(735f + x * scale - 8, 390f + (colorWheel.getHeight() - y * scale) - 8);
+                        colorWheelPicker.setPosition(735f * scale + x * scale - 8f * scale, 390f * scale + (colorWheel.getHeight() - y * scale) - 8f * scale);
                     }
                 }
             }
@@ -192,7 +191,7 @@ public class ColorComponent extends GuiComponent {
 
             this.property.setValue(newColor);
             this.colorComponent.setColor(newColor);
-            this.hexCode.setText("#" + toHex(newColor.r * 255) + toHex(newColor.g * 255) + toHex(newColor.b * 255) + toHex(newColor.a * 255));
+            this.hexCode.setText("#" + toHex(newColor.r * 255f) + toHex(newColor.g * 255f) + toHex(newColor.b * 255f) + toHex(newColor.a * 255f));
             Config.getConfig().writeData();
         }
 

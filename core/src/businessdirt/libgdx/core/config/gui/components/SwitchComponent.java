@@ -15,8 +15,8 @@ public class SwitchComponent extends GuiComponent {
 
         checkBox.setChecked(property.getAsBoolean());
         checkBox.setTransform(true);
-        checkBox.setScale(75f / this.actor.getHeight());
-        checkBox.setPosition(width - 50f - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
+        checkBox.setScale((75f * scale) / this.actor.getHeight());
+        checkBox.setPosition(width - 50f * scale - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
         checkBox.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
