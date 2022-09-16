@@ -7,13 +7,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class TextComponent extends GuiComponent {
+public class TextComponent extends TextField implements GuiComponent {
 
     public TextComponent(PropertyData property, Skin skin, float width, float height) {
-        this.actor = new TextField(property.getAsString(), skin);
-        this.actor.setSize(GuiComponent.width, GuiComponent.height);
-        this.actor.setPosition(width - 50f * scale - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
-        this.actor.addListener(new ChangeListener() {
+        super(property.getAsString(), skin);
+        this.setSize(GuiComponent.width, GuiComponent.height);
+        this.setPosition(width - 50f * scale - (GuiComponent.width + this.getWidth() * this.getScaleX()) / 2, height - this.getHeight() * this.getScaleY() / 2 - height / 2);
+        this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 TextField field = (TextField) actor;

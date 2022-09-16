@@ -7,17 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class SwitchComponent extends GuiComponent {
+public class SwitchComponent extends CheckBox implements GuiComponent {
 
     public SwitchComponent(PropertyData property, Skin skin, float width, float height) {
-        this.actor = new CheckBox("", skin.get("square", CheckBox.CheckBoxStyle.class));
-        CheckBox checkBox = (CheckBox) this.actor;
-
-        checkBox.setChecked(property.getAsBoolean());
-        checkBox.setTransform(true);
-        checkBox.setScale((75f * scale) / this.actor.getHeight());
-        checkBox.setPosition(width - 50f * scale - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
-        checkBox.addListener(new ChangeListener() {
+        super("", skin.get("square", CheckBox.CheckBoxStyle.class));
+        this.setChecked(property.getAsBoolean());
+        this.setTransform(true);
+        this.setScale((75f * scale) / this.getHeight());
+        this.setPosition(width - 50f * scale - (GuiComponent.width + this.getWidth() * this.getScaleX()) / 2, height - this.getHeight() * this.getScaleY() / 2 - height / 2);
+        this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 property.setValue(!property.getAsBoolean());

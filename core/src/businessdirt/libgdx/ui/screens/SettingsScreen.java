@@ -15,7 +15,7 @@ public class SettingsScreen extends AbstractScreen {
     private ScrollPane valuesPane, categoriesPane;
 
     public SettingsScreen() {
-        super(Template.assets.getSkin("skins/ui/skin.json"), Color.TEAL);
+        super(Template.assets.getSkin("skins/ui/8bit.json"), Color.TEAL);
     }
 
     @Override
@@ -99,8 +99,8 @@ public class SettingsScreen extends AbstractScreen {
         });
         this.stage.addActor(backButton);
 
-        this.stage.addActor(ColorComponent.ColorPicker.newInstance(skin).getActor());
-        this.stage.addActor(KeyComponent.KeyInputHandler.newInstance(skin).getActor());
+        this.stage.addActor(ColorComponent.ColorPickerComponent.get());
+        this.stage.addActor(KeyComponent.KeyInputHandler.newInstance(skin));
     }
 
     @Override

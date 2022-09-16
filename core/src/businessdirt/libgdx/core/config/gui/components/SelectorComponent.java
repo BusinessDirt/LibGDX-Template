@@ -7,24 +7,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
-public class SelectorComponent extends GuiComponent {
+public class SelectorComponent extends SelectBox<String> implements GuiComponent {
     public SelectorComponent(PropertyData property, Skin skin, float width, float height) {
-        this.actor = new SelectBox<String>(skin);
-        @SuppressWarnings({"unchecked"})
-        SelectBox<String> selectBox = (SelectBox<String>) this.actor;
+        super(skin);
+        this.setItems(property.getProperty().options());
+        this.getStyle().listStyle.selection.setTopHeight(8f * scale);
+        this.getStyle().listStyle.selection.setLeftWidth(8f * scale);
+        this.getStyle().listStyle.selection.setBottomHeight(8f * scale);
 
-        selectBox.setItems(property.getProperty().options());
-        selectBox.getStyle().listStyle.selection.setTopHeight(8f * scale);
-        selectBox.getStyle().listStyle.selection.setLeftWidth(8f * scale);
-        selectBox.getStyle().listStyle.selection.setBottomHeight(8f * scale);
-
-        selectBox.setSelected(property.getAsString());
-        selectBox.setSize(GuiComponent.width, GuiComponent.height);
-        selectBox.setPosition(width - 50f * scale - (GuiComponent.width + selectBox.getWidth() * selectBox.getScaleX()) / 2, height - selectBox.getHeight() * selectBox.getScaleY() / 2 - height / 2);
-        selectBox.addListener(new ChangeListener() {
+        this.setSelected(property.getAsString());
+        this.setSize(GuiComponent.width, GuiComponent.height);
+        this.setPosition(width - 50f * scale - (GuiComponent.width + this.getWidth() * this.getScaleX()) / 2, height - this.getHeight() * this.getScaleY() / 2 - height / 2);
+        this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                property.setValue(selectBox.getSelected());
+                property.setValue(getSelected());
                 Config.getConfig().writeData();
             }
         });

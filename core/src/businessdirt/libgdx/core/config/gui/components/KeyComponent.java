@@ -15,21 +15,18 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 
-public class KeyComponent extends GuiComponent {
+public class KeyComponent extends Group implements GuiComponent {
 
     private final TextButton primary, secondary;
 
     public KeyComponent(PropertyData property, Skin skin, float width, float height) {
-        KeyComponent instance = this;
-        Key key = property.getAsKey();
+        super();
         float yOff = (height - 25f * scale) / 2 - GuiComponent.height;
 
-        this.actor = new Group();
-        this.actor.setSize(GuiComponent.width, height);
-        this.actor.setPosition(width - 50f * scale - GuiComponent.width, 0f);
-        Group group = (Group) this.actor;
+        this.setSize(GuiComponent.width, height);
+        this.setPosition(width - 50f * scale - GuiComponent.width, 0f);
 
-        String primaryChar = Util.getKeyCharFromCode(key.getPrimary());
+        String primaryChar = Util.getKeyCharFromCode(property.getAsKey().getPrimary());
         if (primaryChar.length() == 1) primaryChar = " ".concat(primaryChar).concat(" ");
 
         this.primary = new TextButton(primaryChar, skin.get("settingsUI", TextButton.TextButtonStyle.class));
@@ -40,11 +37,11 @@ public class KeyComponent extends GuiComponent {
         this.primary.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                KeyInputHandler.get().activate(instance, property, 'p');
+                KeyInputHandler.get().activate(KeyComponent.this, property, 'p');
             }
         });
 
-        String secondaryChar = Util.getKeyCharFromCode(key.getSecondary());
+        String secondaryChar = Util.getKeyCharFromCode(property.getAsKey().getSecondary());
         if (secondaryChar.length() == 1) secondaryChar = " ".concat(secondaryChar).concat(" ");
 
         this.secondary = new TextButton(secondaryChar, skin.get("settingsUI", TextButton.TextButtonStyle.class));
@@ -55,17 +52,16 @@ public class KeyComponent extends GuiComponent {
         this.secondary.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                KeyInputHandler.get().activate(instance, property, 's');
+                KeyInputHandler.get().activate(KeyComponent.this, property, 's');
             }
         });
 
-        group.addActor(this.primary);
-        group.addActor(this.secondary);
+        this.addActor(this.primary);
+        this.addActor(this.secondary);
     }
 
-    public static class KeyInputHandler {
+    public static class KeyInputHandler extends FloatingMenu {
 
-        private final FloatingMenu menu;
         private static KeyInputHandler instance;
         private final Label label;
 
@@ -74,7 +70,7 @@ public class KeyComponent extends GuiComponent {
         private char type;
 
         public KeyInputHandler(Skin skin) {
-            this.menu = new FloatingMenu(skin, 500f * scale, 500f * scale);
+            super(skin, 500f * scale, 500f * scale);
 
             this.label = new Label("Press a key to bind it", skin);
             this.label.setSize(500f * scale, 500f * scale);
@@ -84,7 +80,7 @@ public class KeyComponent extends GuiComponent {
             this.label.addListener(new InputListener() {
                 @Override
                 public boolean keyTyped(InputEvent event, char character) {
-                    if (menu.getActor().isVisible()) {
+                    if (KeyInputHandler.this.isVisible()) {
                         Key key = property.getAsKey();
                         if (type == 'p') {
                             key.setPrimary(event.getKeyCode());
@@ -101,7 +97,7 @@ public class KeyComponent extends GuiComponent {
                         }
 
                         property.setValue(key);
-                        menu.deactivate();
+                        KeyInputHandler.this.setVisible(false);
                         Template.config.writeData();
                     }
 
@@ -111,20 +107,16 @@ public class KeyComponent extends GuiComponent {
             // set the keyboard focus to the label
             this.label.layout();
 
-            this.menu.addActor(this.label);
+            this.addActor(this.label);
         }
 
         public void activate(KeyComponent component, PropertyData property, char type) {
-            menu.getActor().getStage().setKeyboardFocus(label);
-            this.menu.activate();
+            this.getStage().setKeyboardFocus(label);
+            this.setVisible(true);
 
             this.component = component;
             this.property = property;
             this.type = type;
-        }
-
-        public Group getActor() {
-            return this.menu.getActor();
         }
 
         public static KeyInputHandler newInstance(Skin skin) {

@@ -1,6 +1,7 @@
 package businessdirt.libgdx.ui.screens;
 
 import businessdirt.libgdx.Template;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -11,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 public class MenuScreen extends AbstractScreen {
 
     public MenuScreen() {
-        super(Template.assets.getSkin("skins/ui/skin.json"), Color.TEAL);
+        super(Template.assets.getSkin("skins/ui/8bit.json"), Color.TEAL);
     }
 
     @Override
@@ -43,6 +44,19 @@ public class MenuScreen extends AbstractScreen {
             }
         });
         menuContainer.add(playButton).width(350f * scale).height(100f * scale).padBottom(5f * scale);
+        menuContainer.row();
+
+        TextButton quitButton = new TextButton("Quit", this.skin.get("quitButton", TextButton.TextButtonStyle.class));
+        quitButton.setSize(350f * scale, 100f * scale);
+        quitButton.getLabel().setFontScale(2f * scale);
+        quitButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                Gdx.app.exit();
+                System.exit(0);
+            }
+        });
+        menuContainer.add(quitButton).width(350f * scale).height(100f * scale).padBottom(5f * scale);
         menuContainer.row();
 
         this.stage.addActor(menuContainer);

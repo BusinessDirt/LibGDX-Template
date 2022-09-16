@@ -6,6 +6,7 @@ import businessdirt.libgdx.core.util.Config;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
+import com.kotcrab.vis.ui.VisUI;
 
 public class LoadingScreen extends ScreenAdapter {
 
@@ -24,7 +25,10 @@ public class LoadingScreen extends ScreenAdapter {
 
 
         // if the assets finished loading it will enter the main menu
-        if (Template.assets.update()) Template.get().setScreen(new MenuScreen());
+        if (Template.assets.update()) {
+            VisUI.load(Template.assets.getSkin("skins/visui/skin.json"));
+            Template.get().setScreen(new MenuScreen());
+        }
     }
 
     @Override

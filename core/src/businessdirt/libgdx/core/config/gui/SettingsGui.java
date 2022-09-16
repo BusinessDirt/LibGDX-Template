@@ -26,7 +26,7 @@ public class SettingsGui {
 
     private SettingsGui(Table categoryTable, Table propertyTable, float categoryWidth, float propertyWidth) {
         this.searchQuery = "";
-        this.skin = Template.assets.getSkin("skins/ui/skin.json");
+        this.skin = Template.assets.getSkin("skins/ui/8bit.json");
         float scale = Template.fullscreen.height / 1080f;
 
         List<Category> categories = Config.getConfig().getCategories();
@@ -97,7 +97,7 @@ public class SettingsGui {
                         || !previousSubcategory.equals(property.getProperty().subcategory())) {
 
                     float padTop = first ? 5f * scale : 0f;
-                    propertyTable.add(new SubcategoryComponent(property.getProperty().subcategory(), skin, padTop, propertyWidth - 30f * scale).getActor());
+                    propertyTable.add(new SubcategoryComponent(property.getProperty().subcategory(), skin, propertyWidth - 30f * scale));
                     propertyTable.row();
 
                     previousSubcategory = property.getProperty().subcategory();
@@ -134,30 +134,30 @@ public class SettingsGui {
 
                 switch (property.getProperty().type()) {
                     case SWITCH:
-                        group.addActor(new SwitchComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new SwitchComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case SLIDER:
                         SliderComponent sliderComponent = new SliderComponent(property, skin, propertyWidth - 30f * scale, h);
-                        group.addActor(sliderComponent.getActor());
+                        group.addActor(sliderComponent);
                         group.addActor(sliderComponent.getLabel());
                         break;
                     case NUMBER:
-                        group.addActor(new NumberComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new NumberComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case SELECTOR:
-                        group.addActor(new SelectorComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new SelectorComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case TEXT:
-                        group.addActor(new TextComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new TextComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case PARAGRAPH:
-                        group.addActor(new ParagraphComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new ParagraphComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case COLOR:
-                        group.addActor(new ColorComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new ColorComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                     case KEY:
-                        group.addActor(new KeyComponent(property, skin, propertyWidth - 30f * scale, h).getActor());
+                        group.addActor(new KeyComponent(property, skin, propertyWidth - 30f * scale, h));
                         break;
                 }
 

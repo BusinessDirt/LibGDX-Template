@@ -11,23 +11,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.utils.Align;
 
-public class SliderComponent extends GuiComponent {
+public class SliderComponent extends Slider implements GuiComponent {
 
     private final Label label;
 
     public SliderComponent(PropertyData property, Skin skin, float width, float height) {
-        this.actor = new Slider(property.getProperty().min(), property.getProperty().max(), 1f, false, skin);
-        Slider slider = (Slider) this.actor;
-
-        slider.setValue(property.getAsInt());
-        slider.setPosition(width - 50f * scale - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f + 15f * scale);
-        slider.addListener(new ChangeListener() {
+        super(property.getProperty().min(), property.getProperty().max(), 1f, false, skin);
+        this.setValue(property.getAsInt());
+        this.setPosition(width - 50f * scale - this.getWidth() * this.getScaleX(), height - height / 2 - this.getHeight() * this.getScaleY() * 0.5f + 15f * scale);
+        this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                 if (SettingsGui.get().getScrollPane() != null && actor.isTouchFocusTarget()) {
                     actor.getStage().unfocus(SettingsGui.get().getScrollPane());
-                    property.setValue((int) slider.getValue());
-                    label.setText((int) slider.getValue());
+                    property.setValue((int) getValue());
+                    label.setText((int) getValue());
                     Config.getConfig().writeData();
                 } else {
                     actor.getStage().setScrollFocus(SettingsGui.get().getScrollPane());
@@ -38,8 +36,8 @@ public class SliderComponent extends GuiComponent {
         this.label = new Label(property.getPropertyValue().getValue(Config.getConfig()).toString(), skin);
         this.label.setAlignment(Align.center);
         this.label.setTouchable(Touchable.disabled);
-        this.label.setPosition(width - 50f * scale - this.actor.getWidth() * this.actor.getScaleX(), height - height / 2 - this.actor.getHeight() * this.actor.getScaleY() * 0.5f - 15f * scale);
-        this.label.setWidth(this.actor.getWidth());
+        this.label.setPosition(width - 50f * scale - this.getWidth() * this.getScaleX(), height - height / 2 - this.getHeight() * this.getScaleY() * 0.5f - 15f * scale);
+        this.label.setWidth(this.getWidth());
     }
 
     public Label getLabel() {

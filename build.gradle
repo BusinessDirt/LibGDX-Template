@@ -73,5 +73,10 @@ project(":core") {
         implementation 'com.electronwill.night-config:core:3.6.3'
         implementation 'com.electronwill.night-config:toml:3.6.3'
         implementation 'com.google.guava:guava:31.1-jre'
+
+        implementation 'com.github.raeleus.TenPatch:tenpatch:5.2.3'
+        implementation 'com.github.raeleus.stripe:stripe:1.4.1'
+        implementation 'com.github.raeleus.stripe:freetype:1.4.1'
+        api "com.kotcrab.vis:vis-ui:1.5.0"
     }
 }

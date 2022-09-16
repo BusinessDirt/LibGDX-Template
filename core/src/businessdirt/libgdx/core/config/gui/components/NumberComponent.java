@@ -9,34 +9,29 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 import java.util.Objects;
 
-public class NumberComponent extends GuiComponent {
+public class NumberComponent extends TextField implements GuiComponent {
 
     public NumberComponent(PropertyData property, Skin skin, float width, float height) {
-        String previousEntry = String.valueOf(property.getAsDouble());
-        this.actor = new TextField(previousEntry, skin);
-        this.actor.setSize(GuiComponent.width, GuiComponent.height);
-        this.actor.setPosition(width - 50f * scale - (GuiComponent.width + this.actor.getWidth() * this.actor.getScaleX()) / 2, height - this.actor.getHeight() * this.actor.getScaleY() / 2 - height / 2);
-        this.actor.addListener(new ChangeListener() {
+        super(String.valueOf(property.getAsDouble()), skin);
+        this.setSize(GuiComponent.width, GuiComponent.height);
+        this.setPosition(width - 50f * scale - (GuiComponent.width + this.getWidth() * this.getScaleX()) / 2, height - this.getHeight() * this.getScaleY() / 2 - height / 2);
+        this.setTextFieldFilter(((textField, c) -> Character.isDigit(c) || c == '.'));
+        this.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                TextField field = (TextField) actor;
-                int cursorPosition = field.getCursorPosition();
-
-                field.setText(field.getText().replaceAll("[^\\d.]", ""));
-                field.setText(filterDots(field.getText()));
-
-                field.setCursorPosition(Math.min(cursorPosition, field.getText().length()));
-                if (!Objects.equals(field.getText(), "")) {
-                    property.setValue(Double.parseDouble(field.getText()));
+                filter();
+                if (!Objects.equals(getText(), "")) {
+                    property.setValue(Double.parseDouble(getText()));
                     Config.getConfig().writeData();
                 }
             }
         });
     }
 
-    private String filterDots(String string) {
-        char[] chars = string.toCharArray();
+    private void filter() {
+        char[] chars = this.getText().toCharArray();
         boolean dot = false;
+        int cursorPosition = getCursorPosition();
 
         for (int i = 0; i < chars.length; i++) {
             if (chars[i] == '.' && !dot) {
@@ -45,6 +40,7 @@ public class NumberComponent extends GuiComponent {
                 chars[i] = '-';
             }
         }
-        return String.valueOf(chars).replaceAll("-", "");
+        this.setText(String.valueOf(chars).replaceAll("-", ""));
+        setCursorPosition(Math.min(cursorPosition, getText().length()));
     }
 }
