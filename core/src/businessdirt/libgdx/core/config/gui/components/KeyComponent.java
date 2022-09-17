@@ -1,15 +1,11 @@
 package businessdirt.libgdx.core.config.gui.components;
 
-import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.data.PropertyData;
-import businessdirt.libgdx.core.config.data.types.Key;
+import businessdirt.libgdx.core.config.gui.components.extras.GuiComponent;
+import businessdirt.libgdx.core.config.gui.components.extras.KeyInputComponent;
 import businessdirt.libgdx.core.util.Util;
-import businessdirt.libgdx.ui.actors.FloatingMenu;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
@@ -37,7 +33,7 @@ public class KeyComponent extends Group implements GuiComponent {
         this.primary.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                KeyInputHandler.get().activate(KeyComponent.this, property, 'p');
+                KeyInputComponent.get().activate(KeyComponent.this, property, 'p');
             }
         });
 
@@ -52,7 +48,7 @@ public class KeyComponent extends Group implements GuiComponent {
         this.secondary.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                KeyInputHandler.get().activate(KeyComponent.this, property, 's');
+                KeyInputComponent.get().activate(KeyComponent.this, property, 's');
             }
         });
 
@@ -60,72 +56,11 @@ public class KeyComponent extends Group implements GuiComponent {
         this.addActor(this.secondary);
     }
 
-    public static class KeyInputHandler extends FloatingMenu {
+    public TextButton getPrimary() {
+        return primary;
+    }
 
-        private static KeyInputHandler instance;
-        private final Label label;
-
-        private PropertyData property;
-        private KeyComponent component;
-        private char type;
-
-        public KeyInputHandler(Skin skin) {
-            super(skin, 500f * scale, 500f * scale);
-
-            this.label = new Label("Press a key to bind it", skin);
-            this.label.setSize(500f * scale, 500f * scale);
-            this.label.setFontScale(2f * scale);
-            this.label.setWrap(true);
-            this.label.setAlignment(Align.center);
-            this.label.addListener(new InputListener() {
-                @Override
-                public boolean keyTyped(InputEvent event, char character) {
-                    if (KeyInputHandler.this.isVisible()) {
-                        Key key = property.getAsKey();
-                        if (type == 'p') {
-                            key.setPrimary(event.getKeyCode());
-
-                            String primaryChar = Util.getKeyCharFromCode(key.getPrimary());
-                            if (primaryChar.length() == 1) primaryChar = " ".concat(primaryChar).concat(" ");
-                            component.primary.setText(primaryChar);
-                        } else if (type == 's') {
-                            key.setSecondary(event.getKeyCode());
-
-                            String secondaryChar = Util.getKeyCharFromCode(key.getSecondary());
-                            if (secondaryChar.length() == 1) secondaryChar = " ".concat(secondaryChar).concat(" ");
-                            component.secondary.setText(secondaryChar);
-                        }
-
-                        property.setValue(key);
-                        KeyInputHandler.this.setVisible(false);
-                        Template.config.writeData();
-                    }
-
-                    return super.keyTyped(event, character);
-                }
-            });
-            // set the keyboard focus to the label
-            this.label.layout();
-
-            this.addActor(this.label);
-        }
-
-        public void activate(KeyComponent component, PropertyData property, char type) {
-            this.getStage().setKeyboardFocus(label);
-            this.setVisible(true);
-
-            this.component = component;
-            this.property = property;
-            this.type = type;
-        }
-
-        public static KeyInputHandler newInstance(Skin skin) {
-            KeyInputHandler.instance = new KeyInputHandler(skin);
-            return KeyInputHandler.instance;
-        }
-
-        public static KeyInputHandler get() {
-            return KeyInputHandler.instance;
-        }
+    public TextButton getSecondary() {
+        return secondary;
     }
 }

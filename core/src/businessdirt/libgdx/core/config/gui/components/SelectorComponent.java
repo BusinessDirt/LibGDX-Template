@@ -1,6 +1,7 @@
 package businessdirt.libgdx.core.config.gui.components;
 
 import businessdirt.libgdx.core.config.data.PropertyData;
+import businessdirt.libgdx.core.config.gui.components.extras.GuiComponent;
 import businessdirt.libgdx.core.util.Config;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;

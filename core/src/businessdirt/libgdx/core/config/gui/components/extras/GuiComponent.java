@@ -1,4 +1,4 @@
-package businessdirt.libgdx.core.config.gui.components;
+package businessdirt.libgdx.core.config.gui.components.extras;
 
 import businessdirt.libgdx.Template;
 

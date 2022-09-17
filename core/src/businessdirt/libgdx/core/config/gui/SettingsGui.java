@@ -182,11 +182,15 @@ public class SettingsGui {
         this.pane = pane;
     }
 
+    public Skin getSkin() {
+        return this.skin;
+    }
+
     public static SettingsGui get() {
         return SettingsGui.instance;
     }
 
-    public static void newInstance(Table categoryTable, Table propertyTable, float categoryWidth, float propertyWidth) {
+    public static void init(Table categoryTable, Table propertyTable, float categoryWidth, float propertyWidth) {
         SettingsGui.instance = new SettingsGui(categoryTable, propertyTable, categoryWidth, propertyWidth);
     }
 }

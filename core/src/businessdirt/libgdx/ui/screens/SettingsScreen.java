@@ -2,8 +2,8 @@ package businessdirt.libgdx.ui.screens;
 
 import businessdirt.libgdx.Template;
 import businessdirt.libgdx.core.config.gui.SettingsGui;
-import businessdirt.libgdx.core.config.gui.components.ColorComponent;
-import businessdirt.libgdx.core.config.gui.components.KeyComponent;
+import businessdirt.libgdx.core.config.gui.components.extras.ColorPickerComponent;
+import businessdirt.libgdx.core.config.gui.components.extras.KeyInputComponent;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
@@ -45,7 +45,7 @@ public class SettingsScreen extends AbstractScreen {
         Table categoryTable = new Table();
         categoryTable.align(Align.top);
 
-        SettingsGui.newInstance(categoryTable, propertyTable, categoryWidth , propertyWidth);
+        SettingsGui.init(categoryTable, propertyTable, categoryWidth , propertyWidth);
 
         // scroll pane for the config values
         this.valuesPane = new ScrollPane(propertyTable, skin.get("default", ScrollPane.ScrollPaneStyle.class));
@@ -99,8 +99,8 @@ public class SettingsScreen extends AbstractScreen {
         });
         this.stage.addActor(backButton);
 
-        this.stage.addActor(ColorComponent.ColorPickerComponent.get());
-        this.stage.addActor(KeyComponent.KeyInputHandler.newInstance(skin));
+        this.stage.addActor(ColorPickerComponent.get());
+        this.stage.addActor(KeyInputComponent.get());
     }
 
     @Override
