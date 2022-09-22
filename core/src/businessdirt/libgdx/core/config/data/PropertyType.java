@@ -13,5 +13,5 @@ package businessdirt.libgdx.core.config.data;
  *      {@code KEY} -> {@link businessdirt.libgdx.core.config.data.types.Key} <br>
  */
 public enum PropertyType {
-    SWITCH, TEXT, PARAGRAPH, SLIDER, NUMBER, COLOR, SELECTOR, KEY;
+    SWITCH, TEXT, PARAGRAPH, SLIDER, NUMBER, COLOR, SELECTOR, KEY
 }

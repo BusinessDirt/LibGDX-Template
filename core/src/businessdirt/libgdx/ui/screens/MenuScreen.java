@@ -1,6 +1,8 @@
 package businessdirt.libgdx.ui.screens;
 
 import businessdirt.libgdx.Template;
+import businessdirt.libgdx.ui.actors.SequentialFloatingMenu;
+import businessdirt.libgdx.ui.actors.sequential.SequentialTextButton;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -18,6 +20,12 @@ public class MenuScreen extends AbstractScreen {
     @Override
     public void show() {
         float scale = Template.fullscreen.height / 1080f;
+
+        SequentialFloatingMenu sequentialFloatingMenu = new SequentialFloatingMenu(skin, 500f, 500f);
+        sequentialFloatingMenu.add(new SequentialTextButton("test", skin));
+        SequentialTextButton test2 = new SequentialTextButton("test2", skin);
+        test2.setPosition(250f, 250f);
+        sequentialFloatingMenu.add(test2);
 
         Table menuContainer = new Table();
         menuContainer.setBounds(50f * scale, 50f * scale, 350f * scale, 980f * scale);
@@ -46,6 +54,18 @@ public class MenuScreen extends AbstractScreen {
         menuContainer.add(playButton).width(350f * scale).height(100f * scale).padBottom(5f * scale);
         menuContainer.row();
 
+        TextButton testButton = new TextButton("Test", this.skin.get("playButton", TextButton.TextButtonStyle.class));
+        testButton.setSize(350f * scale, 100f * scale);
+        testButton.getLabel().setFontScale(2f * scale);
+        testButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                sequentialFloatingMenu.setVisible(true);
+            }
+        });
+        menuContainer.add(testButton).width(350f * scale).height(100f * scale).padBottom(5f * scale);
+        menuContainer.row();
+
         TextButton quitButton = new TextButton("Quit", this.skin.get("quitButton", TextButton.TextButtonStyle.class));
         quitButton.setSize(350f * scale, 100f * scale);
         quitButton.getLabel().setFontScale(2f * scale);
@@ -60,6 +80,7 @@ public class MenuScreen extends AbstractScreen {
         menuContainer.row();
 
         this.stage.addActor(menuContainer);
+        this.stage.addActor(sequentialFloatingMenu);
     }
 
     @Override

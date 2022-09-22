@@ -12,7 +12,7 @@ import com.badlogic.gdx.utils.Align;
 
 public class SettingsScreen extends AbstractScreen {
 
-    private ScrollPane valuesPane, categoriesPane;
+    private ScrollPane valuesPane;
 
     public SettingsScreen() {
         super(Template.assets.getSkin("skins/ui/8bit.json"), Color.TEAL);
@@ -55,15 +55,15 @@ public class SettingsScreen extends AbstractScreen {
         this.valuesPane.layout();
 
         // scroll pane for the categories
-        this.categoriesPane = new ScrollPane(categoryTable, skin.get("default", ScrollPane.ScrollPaneStyle.class));
-        this.categoriesPane.setSmoothScrolling(true);
-        this.categoriesPane.setScrollingDisabled(true, false);
-        this.categoriesPane.setFadeScrollBars(true);
-        this.categoriesPane.setScrollBarPositions(true, false);
-        this.categoriesPane.layout();
+        ScrollPane categoriesPane = new ScrollPane(categoryTable, skin.get("default", ScrollPane.ScrollPaneStyle.class));
+        categoriesPane.setSmoothScrolling(true);
+        categoriesPane.setScrollingDisabled(true, false);
+        categoriesPane.setFadeScrollBars(true);
+        categoriesPane.setScrollBarPositions(true, false);
+        categoriesPane.layout();
 
         // add everything to the container
-        container.add(this.categoriesPane).width(categoryWidth).height(height).pad(containerOffset, containerOffset, containerOffset, 0f);
+        container.add(categoriesPane).width(categoryWidth).height(height).pad(containerOffset, containerOffset, containerOffset, 0f);
         container.add(this.valuesPane).width(propertyWidth).height(height).pad(containerOffset, 0f, containerOffset, containerOffset);
         SettingsGui.get().setScrollPane(this.valuesPane);
         this.stage.addActor(container);
